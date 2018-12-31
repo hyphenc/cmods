@@ -5,7 +5,7 @@ Some chromium modifications
 ## changes to chrome://newtab
 Replaced by a particles.js background with a centered clock. In December the animation will change to look like snow.
 ## bookmarks management
-Is done with a simple bm.html file, which can be quickly accessed by pressing Alt+B (remappable in manifest.json). 
+Is done with a simple bm.html file, which can be quickly accessed by pressing Alt+B (needs to be configured in Extensions>Keyboard Shortcuts, remappable in manifest.json). 
 The query field in bm.html has 3 different modes:
 ```
 To directly go to the first regex match, just type your query and hit enter

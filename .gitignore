@@ -1,2 +1,4 @@
 bm.html
 bm.html.bak
+*.sync-conflict*
+.stfolder
