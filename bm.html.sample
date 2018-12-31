@@ -1,0 +1,89 @@
+<html>
+<head>
+<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.5">
+<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
+<link rel="icon" href="./favicon.ico" type="image/x-icon">
+<title>bookmarks</title>
+<style>
+* {
+    -webkit-tap-highlight-color: black !important;
+    -webkit-focus-ring-color: black !important;
+    outline: none !important;
+	margin: 0;
+	margin-left: 1%;
+	font-family: monospace;
+	color: white;
+	background-color: black;
+}
+body {
+	font-size: 1.6em;
+}
+a {
+	font-size: 1.9em;
+	margin-left: 1.1em;
+	margin-bottom: 0.6em;
+	text-decoration: underline #2d2d2d;
+	display: table;
+}
+a:active {
+	color: black;
+	background-color: white;
+}
+input {
+	font-size: 1.4em;
+	line-height: 1.6em;
+    margin-bottom: 1.2em;
+	padding-left: 0.5%;
+}
+::selection {
+	background: white;
+}
+h3 {
+	font-size: 3em;
+	line-height: 1.5em;
+	padding-bottom: 0.4em;
+}
+p {
+	margin-top: 5em;
+	margin-bottom: 4em;
+}
+.top {
+    margin-top: 1%;
+	font-size: 3.4em;
+	letter-spacing: 0.2vw;
+}
+</style>
+</head>
+<body>
+<h3 class="top">BOOKMARKS</h3>
+<br>
+<input type="text" id="search" placeholder="enter query..." autofocus></input>
+<h3>group 1</h3>
+ 	<a href='https://example.com'>example.com</a>
+	<a href='https://example.org'>example.org</a>
+<script>
+document.getElementById("search").value = "";
+document.getElementById("search").onkeydown = function(e){
+   if(e.keyCode == 13){
+       document.getElementById("search").focus();
+	   if (document.getElementById("search").value.includes("?") && !document.getElementById("search").value.includes("!")) {
+		   window.find((document.getElementById("search").value.replace("?", "")),0,0,0,0,0,1);
+	   } else if (document.getElementById("search").value.includes("!")) {
+		window.location.href = "https://duckduckgo.com/?q="+encodeURI(document.getElementById("search").value.replace(new RegExp("^!"), ""));
+	   } else {
+		try {
+			window.location.href = document.getElementsByTagName("html")[0].innerHTML.match(new RegExp(/<a[\s\S]*?<p>/))[0].match(new RegExp(".*"+document.getElementById("search").value+".*"), "i")[0].replace(new RegExp('<a href="'), "").replace(new RegExp('">.*</a>'), "");
+		} catch (e) {}
+	   }
+   }
+};
+document.onkeydown = function(e){
+   if(e.keyCode == 8 && (document.getElementById("search") === document.activeElement)){
+       document.getElementById("search").focus();
+       document.getElementById("search").value = "";
+   }
+};
+</script>
+</body>
+</html>
