@@ -31,7 +31,7 @@ case $1 in
         printf "enter full bookmark name to prevent accidental renaming, unique names are recommended.\n\n"
         read -rp "bookmark name? : " search
         if [[ " ${groups[@]} " =~ $search ]]; then #check if $search is a group
-            printf "a group named '$search' exists, unique names are recommended to prevent 'happy accidents'.\n"
+            printf "you can't rename a bookmark to a group name.\n"
             exit 1
         fi
         read -rp "replace with? : " put_this
@@ -39,5 +39,5 @@ case $1 in
         printf "\nrenamed bookmark\n"
         ;;
     *) #help
-    	printf " bm.sh [option]\n  [options] = add, rm, re\n\tadd: adds a bookmark to bm.html\n\trm: does a global(!) regex delete for all (bookmark) matches\n\tre: renames a bookmark using a regex\n\tanything else: shows this help message\n"
+    	printf " bm.sh [option]\n  [options] = add, rm, re\n\tadd: adds a bookmark to bm.html\n\trm: does a global(!) regex delete\n\tre: renames a bookmark using a regex\n\tanything else: shows this help message\n"
 esac
